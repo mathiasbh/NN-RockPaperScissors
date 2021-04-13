@@ -1,5 +1,7 @@
-_CHECKPOINT
-_MODELS
+_CHECKPOINT/
+_MODELS/
+.vscode/
+tmp/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
