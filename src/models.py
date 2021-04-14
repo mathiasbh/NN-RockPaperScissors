@@ -20,7 +20,7 @@ def create_model(learning_rate, loss=tf.keras.losses.SparseCategoricalCrossentro
     model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dropout(0.5))
     model.add(tf.keras.layers.Dense(128, activation='relu'))
-    
+
     model.add(tf.keras.layers.Dropout(0.3))
     model.add(tf.keras.layers.Dense(64, activation='relu'))
     model.add(tf.keras.layers.Dropout(0.2))
@@ -42,7 +42,7 @@ class Wrapper(tf.keras.Model):
     """
         Additional layers to pretrained model
     """
-    
+
     def __init__(self, base_model, img_shape):
         super(Wrapper, self).__init__()
         self.base_model = base_model
@@ -53,8 +53,8 @@ class Wrapper(tf.keras.Model):
         self.dropout2 = tf.keras.layers.Dropout(0.25)
         self.dense3 = tf.keras.layers.Dense(32, activation='relu')
         self.output_layer = tf.keras.layers.Dense(N_CLASSES, activation='softmax')
-        
-        
+
+
     def call(self, inputs):
         x = self.base_model(inputs)
         x = self.average_pooling_layer(x)
@@ -73,8 +73,8 @@ def load_googlenet(IMG_SHAPE, learning_rate):
     googlenet_base = tf.keras.applications.InceptionV3(input_shape=IMG_SHAPE, include_top=False, weights='imagenet')
     googlenet = setup_model(googlenet_base, learning_rate)
     return(googlenet)
-    
-    
+
+
 def load_vggnet(IMG_SHAPE, learning_rate):
     vgg16_base = tf.keras.applications.VGG16(input_shape=IMG_SHAPE, include_top=False, weights='imagenet')
     vgg16 = setup_model(vgg16_base, learning_rate)
@@ -84,5 +84,3 @@ def load_resnet(IMG_SHAPE, learning_rate):
     resnet_base = tf.keras.applications.ResNet101V2(input_shape=IMG_SHAPE, include_top=False, weights='imagenet')
     resnet = setup_model(resnet_base, learning_rate)
     return(resnet)
-
-

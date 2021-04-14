@@ -13,14 +13,14 @@ if gpus:
       tf.config.experimental.set_memory_growth(gpu, True)
   except RuntimeError as e:
     print(e)
-    
-    
-    
+
+
+
 DATASET_PATH = 'D:/Google drive/Coding/MachineLearning/NN-RockPaperScissors_data/_DATA/'
 #DATASET_PATH = 'D:/Google drive/Coding/MachineLearning/NN-RockPaperScissors_data/_DATA/TRAIN/'
 DATASET_NAME = 'rock_paper_scissors'
 
-    
+
 N_CLASSES = 3 # CHANGE HERE, total number of classes
 CHANNELS = 3
 #IMG_SIZE = 350

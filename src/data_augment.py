@@ -1,6 +1,6 @@
 
 from config import *
-import os 
+import os
 from tensorflow.keras.preprocessing import image
 
 FOLDER_INPUT = ['PAPER', 'ROCK', 'SCISSOR']

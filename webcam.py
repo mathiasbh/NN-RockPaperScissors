@@ -24,29 +24,31 @@ capture = cv.VideoCapture(0)
 while True:
     # Show video capture frame by frame
     ret, frame = capture.read()
-    
+
     if frame is None:
         break
-    
+
+
     # Extract the image from the rectangle
     roi = frame[100:400, 175:475]  # y, x
     img = cv.cvtColor(roi, cv.COLOR_BGR2RGB)
     img = cv.resize(img, (IMG_SIZE, IMG_SIZE))
     img = img/255
-    
-    # Classify 
+
+
+    # Classify
     prediction, pct = classify_image(model, img)
-    
+
     # Display the resulting frame
     cv.rectangle(frame, (175, 100), (475, 400), (0, 0, 255), 3)
-    cv.putText(frame, "{:10s}".format(prediction), (175,80), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), thickness=2) 
-    cv.putText(frame, "({:3.0f}%)".format(pct*100), (360,80), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), thickness=2) 
+    cv.putText(frame, "{:10s}".format(prediction), (175,80), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), thickness=2)
+    cv.putText(frame, "({:3.0f}%)".format(pct*100), (360,80), cv.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), thickness=2)
     cv.imshow('Frame', frame)
-    
+
     keyboard = cv.waitKey(1)
     if (keyboard == 'q') or (keyboard == 27):
         break
-    
+
 
 capture.release()
 cv.destroyAllWindows()
