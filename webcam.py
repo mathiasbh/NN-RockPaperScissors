@@ -28,14 +28,12 @@ while True:
     if frame is None:
         break
     
-    
     # Extract the image from the rectangle
     roi = frame[100:400, 175:475]  # y, x
     img = cv.cvtColor(roi, cv.COLOR_BGR2RGB)
     img = cv.resize(img, (IMG_SIZE, IMG_SIZE))
     img = img/255
     
-        
     # Classify 
     prediction, pct = classify_image(model, img)
     
